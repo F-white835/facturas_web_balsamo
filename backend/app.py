@@ -1,11 +1,11 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, DateTimeField, SubmitField, SelectField
 from wtforms.validators import DataRequired
-from datetime import datetime
-
 from extensions import db
 from models import Factura
+from datetime import datetime
+
 
 app = Flask(__name__)
 app.config.from_object('backend.config.Config')
