@@ -12,10 +12,27 @@ db.init_app(app)
 with app.app_context():
     db.create_all()  # <- crea las tablas si no existen
 
+from flask_wtf import FlaskForm
+from wtforms import StringField, FloatField, DateTimeField, SubmitField, SelectField
+from wtforms.validators import DataRequired
+
 class FacturaForm(FlaskForm):
     cliente = StringField('Cliente', validators=[DataRequired()])
     monto = FloatField('Monto', validators=[DataRequired()])
-    fecha = DateTimeField('Fecha', default=datetime.utcnow, validators=[DataRequired()])
+    fecha = DateTimeField('Fecha', validators=[DataRequired()])
+    tipo_comprobante = SelectField('Tipo de Comprobante', choices=[
+        ('Factura', 'Factura'),
+        ('Recibo', 'Recibo'),
+        ('Ticket', 'Ticket')
+    ])
+    forma_pago = SelectField('Forma de Pago', choices=[
+        ('Efectivo', 'Efectivo'),
+        ('Tarjeta', 'Tarjeta'),
+        ('Transferencia', 'Transferencia')
+    ])
+    nit = StringField('NIT')
+    submit = SubmitField('Generar')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -24,7 +41,10 @@ def index():
         factura = Factura(
             cliente=form.cliente.data,
             monto=form.monto.data,
-            fecha=form.fecha.data
+            fecha=form.fecha.data,
+            tipo_comprobante=form.tipo_comprobante.data,
+            forma_pago=form.forma_pago.data,
+            nit=form.nit.data
         )
         db.session.add(factura)
         db.session.commit()
