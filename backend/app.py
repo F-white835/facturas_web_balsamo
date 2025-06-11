@@ -29,7 +29,7 @@ def index():
         db.session.add(factura)
         db.session.commit()
         return redirect(url_for('index'))
-    facturas = Factura.query.all()
-    return render_template('index.html', form=form, facturas=facturas)
+    return render_template('index.html', form=form)
+
 
 
