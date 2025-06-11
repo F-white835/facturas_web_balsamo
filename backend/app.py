@@ -4,8 +4,8 @@ from wtforms import StringField, FloatField, DateTimeField, SubmitField, SelectF
 from wtforms.validators import DataRequired
 from datetime import datetime
 
-from backend.extensions import db
-from backend.models import Factura
+from extensions import db
+from models import Factura
 
 app = Flask(__name__)
 app.config.from_object('backend.config.Config')
