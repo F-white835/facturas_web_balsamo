@@ -1,0 +1,15 @@
+# Entorno virtual
+venv/
+__pycache__/
+*.pyc
+
+# Archivos de configuración del sistema
+.DS_Store
+*.swp
+*.swo
+
+# Archivos de entorno y configuración
+.env
+
+# WeasyPrint output
+*.pdf
