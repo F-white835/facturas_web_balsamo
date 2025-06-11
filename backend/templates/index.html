@@ -2,65 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Generar Factura</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e6f7ff; /* Celeste claro */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
-        h1 {
-            text-align: center;
-            color: #007acc;
-        }
-        label {
-            display: block;
-            margin-top: 15px;
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            margin-top: 20px;
-            width: 100%;
-            padding: 10px;
-            background-color: #007acc;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #005f99;
-        }
-    </style>
+    <title>Factura electronica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="form-container">
-        <h1>Generar Factura</h1>
+        <h2>Generar Factura</h2>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.cliente.label }} {{ form.cliente() }}
-            {{ form.monto.label }} {{ form.monto() }}
-            {{ form.fecha.label }} {{ form.fecha() }}
-            {{ form.tipo_comprobante.label }} {{ form.tipo_comprobante() }}
-            {{ form.forma_pago.label }} {{ form.forma_pago() }}
-            {{ form.nit.label }} {{ form.nit() }}
+            {{ form.cliente.label }} {{ form.cliente(size=40) }}<br><br>
+            {{ form.monto.label }} {{ form.monto(size=40) }}<br><br>
+            {{ form.fecha.label }} {{ form.fecha(size=40) }}<br><br>
+            {{ form.tipo_comprobante.label }} {{ form.tipo_comprobante() }}<br><br>
+            {{ form.forma_pago.label }} {{ form.forma_pago() }}<br><br>
+            {{ form.nit.label }} {{ form.nit(size=40) }}<br><br>
             {{ form.submit() }}
         </form>
     </div>
