@@ -32,5 +32,4 @@ def index():
     facturas = Factura.query.all()
     return render_template('index.html', form=form, facturas=facturas)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
