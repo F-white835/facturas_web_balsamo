@@ -1,5 +1,5 @@
-from backend.extensions import db
-from datetime import datetime
+from extensions import db
+from models import Factura
 
 class Factura(db.Model):
     id = db.Column(db.Integer, primary_key=True)
