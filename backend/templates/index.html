@@ -1,39 +1,67 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facturación Electrónica</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Generar Factura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Celeste claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #007acc;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005f99;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <h1>Generar Factura</h1>
-        <form method="POST" action="/">
+        <form method="POST">
             {{ form.hidden_tag() }}
-            <div>
-                {{ form.cliente.label }}<br>
-                {{ form.cliente(size=32) }}<br>
-                {% for error in form.cliente.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
-            </div>
-            <div>
-                {{ form.monto.label }}<br>
-                {{ form.monto(size=32) }}<br>
-                {% for error in form.monto.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
-            </div>
-            <div>
-                {{ form.fecha.label }}<br>
-                {{ form.fecha() }}<br>
-                {% for error in form.fecha.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
-            </div>
-            <button type="submit">Generar</button>
+            {{ form.cliente.label }} {{ form.cliente() }}
+            {{ form.monto.label }} {{ form.monto() }}
+            {{ form.fecha.label }} {{ form.fecha() }}
+            {{ form.tipo_comprobante.label }} {{ form.tipo_comprobante() }}
+            {{ form.forma_pago.label }} {{ form.forma_pago() }}
+            {{ form.nit.label }} {{ form.nit() }}
+            {{ form.submit() }}
         </form>
     </div>
 </body>
