@@ -35,12 +35,6 @@
             </div>
             <button type="submit">Generar</button>
         </form>
-        <h2>Facturas Generadas</h2>
-        <ul>
-            {% for factura in facturas %}
-                <li>{{ factura.cliente }} - ${{ factura.monto }} - {{ factura.fecha }}</li>
-            {% endfor %}
-        </ul>
     </div>
 </body>
 </html>
