@@ -1,20 +1,18 @@
-# backend/app.py
-from flask import Flask, render_template, request, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField, DateTimeField
-from wtforms.validators import DataRequired
-from models import db, Factura
-from datetime import datetime
-
-app = Flask(__name__)
-app.config.from_object('config.Config')
-db.init_app(app)
-with app.app_context():
-    db.create_all()  # <- crea las tablas si no existen
-
+from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, DateTimeField, SubmitField, SelectField
 from wtforms.validators import DataRequired
+from datetime import datetime
+
+from backend.extensions import db
+from backend.models import Factura
+
+app = Flask(__name__)
+app.config.from_object('backend.config.Config')
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
 
 class FacturaForm(FlaskForm):
     cliente = StringField('Cliente', validators=[DataRequired()])
@@ -33,7 +31,6 @@ class FacturaForm(FlaskForm):
     nit = StringField('NIT')
     submit = SubmitField('Generar')
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = FacturaForm()
@@ -50,6 +47,3 @@ def index():
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('index.html', form=form)
-
-
-
